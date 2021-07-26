@@ -10,7 +10,8 @@ const state = {
 
     screen: {width: 20, height: 20}
 }
-const W = 87, A = 65, S = 83, D = 68 
+const W = 87, A = 65, S = 83, D = 68                                  //keys
+const arrowUp = 38, arrowLeft = 37, arrowDown = 40, arrowRight = 39   //keys
 
 const RENDER = () => {
     context.fillStyle = '#FDFD00'
@@ -29,30 +30,37 @@ createGame()
 
 function keydownHandler(e) {
     let key = e.keyCode
-    
-    if (key === W && state.player1.y > 0) {
-        state.player1.y--
+    // > 0, < 19
 
-        console.log(`y: ${state.player1.y}, key 'W' has been pressed`)
-        return
+    switch (key) {
+        //player1
+        case W: state.player1.y--
+            break
+        case A: state.player1.x--
+            break
+        case S: state.player1.y++
+            break
+        case D: state.player1.x++
+            break
+        //player2
+        case arrowUp: state.player2.y-- && command
+            break
+        case arrowLeft: state.player2.x--
+            break
+        case arrowDown: state.player2.y++
+            break
+        case arrowRight: state.player2.x++
+            break
     }
-    if (key === A && state.player1.x > 0) {
-        state.player1.x--
+    notifyXY()
+    function borderLimit() {
 
-        console.log(`x: ${state.player1.x}, key 'A' has been pressed`)
-        return
     }
-    if (key === S && state.player1.y < 19) {
-        state.player1.y++
-
-        console.log(`y: ${state.player1.y}, key 'S' has been pressed`)
-        return
-    }
-    if (key === D && state.player1.x < 19) {
-        state.player1.x++
-
-        console.log(`x: ${state.player1.x}, key 'D' has been pressed`)
-        return
+    function notifyXY(command) {
+        if (key) {
+            console.log(`x: ${state.player1.x}, y: ${state.player1.y}`)
+            console.log(`x: ${state.player2.x}, y: ${state.player2.y}`)
+        }
     }
 }
 

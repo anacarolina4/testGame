@@ -69,7 +69,3 @@ function createGame() {
     window.addEventListener('keydown', keydownHandler)
     requestAnimationFrame(createGame, screen)
 }
-
-
-//falta configs do player2
-//random spawn e respawn das fruits
